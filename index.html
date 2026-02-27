@@ -19,7 +19,6 @@ body{
     scroll-behavior:smooth;
 }
 
-/* Background Glow */
 body::before{
     content:"";
     position:fixed;
@@ -31,7 +30,6 @@ body::before{
     z-index:-1;
 }
 
-/* Navbar */
 nav{
     position:fixed;
     width:100%;
@@ -61,7 +59,6 @@ section{
     justify-content:center;
 }
 
-/* Hero */
 .hero h1{
     font-size:56px;
     color:white;
@@ -76,17 +73,6 @@ section{
     max-width:650px;
 }
 
-.btn{
-    margin-top:30px;
-    padding:14px 32px;
-    background:#4da3ff;
-    color:white;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-}
-
-/* Cards */
 .grid{
     margin-top:40px;
     display:grid;
@@ -191,12 +177,7 @@ footer{
 <p style="margin-top:20px; max-width:800px; line-height:1.8; color:#b0b8c5;">
 I am a Software Engineering student at Zarqa University with a strong passion for programming and logical thinking.
 I enjoy analyzing problems, building structured solutions, and continuously improving my technical skills.
-
-I have completed a training course at Al Hussein Technical University (HTU) and participated in dialogue programs
-that strengthened my communication and teamwork skills. I also hold several additional certificates and actively
-participate in volunteer work.
-
-I am highly passionate about teamwork, continuous learning, and building a professional career in the IT field.
+I completed a training course at Al Hussein Technical University (HTU) and actively participate in volunteer work and teamwork activities.
 </p>
 </section>
 
@@ -229,10 +210,12 @@ I am highly passionate about teamwork, continuous learning, and building a profe
 <div id="chat-box">
 <div id="chat-header">Zaid AI Assistant</div>
 <div id="chat-messages"></div>
-<input type="text" id="chat-input" placeholder="Ask about Zaid...">
+<input type="text" id="chat-input" placeholder="Ask me anything about Zaid...">
 </div>
 
 <script>
+const SERVER_URL = "https://zaid-ai-server.onrender.com"; // ضع دیده رابط السيرفر
+
 const btn = document.getElementById("chat-btn");
 const box = document.getElementById("chat-box");
 const input = document.getElementById("chat-input");
@@ -243,27 +226,25 @@ btn.onclick = () => {
     box.style.flexDirection = "column";
 };
 
-input.addEventListener("keypress", function(e){
+input.addEventListener("keypress", async function(e){
     if(e.key === "Enter"){
-        let text = input.value.toLowerCase();
+        const text = input.value;
         messages.innerHTML += "<div><b>You:</b> "+text+"</div>";
-
-        let reply = "I can tell you about Zaid. Ask about skills, university, or contact.";
-
-        if(text.includes("who") || text.includes("about"))
-            reply = "Zaid Hardan is a Software Engineering student at Zarqa University passionate about programming and logical thinking.";
-
-        else if(text.includes("skills"))
-            reply = "His skills include Java, OOP, Android, HTML, CSS, Git, and Cybersecurity basics.";
-
-        else if(text.includes("contact") || text.includes("email"))
-            reply = "You can contact him at: zad.hardan1@outlook.com";
-
-        else if(text.includes("university"))
-            reply = "He studies at Zarqa University and completed training at HTU.";
-
-        messages.innerHTML += "<div><b>AI:</b> "+reply+"</div>";
         input.value="";
+
+        messages.innerHTML += "<div><i>AI is typing...</i></div>";
+
+        const res = await fetch(SERVER_URL + "/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message: text })
+        });
+
+        const data = await res.json();
+
+        messages.innerHTML += "<div><b>AI:</b> "+data.reply+"</div>";
         messages.scrollTop = messages.scrollHeight;
     }
 });
