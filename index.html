@@ -10,7 +10,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 body{
@@ -19,7 +19,7 @@ body{
     scroll-behavior:smooth;
 }
 
-/* Tech background glow */
+/* Background Glow */
 body::before{
     content:"";
     position:fixed;
@@ -41,39 +41,24 @@ nav{
     background:rgba(10,15,28,0.8);
     backdrop-filter:blur(10px);
     border-bottom:1px solid rgba(255,255,255,0.05);
-    z-index:1000;
 }
 
-nav h2{
-    color:#4da3ff;
-}
+nav h2{color:#4da3ff;}
 
 nav a{
     color:#ccc;
     text-decoration:none;
     margin-left:30px;
-    transition:.3s;
 }
 
-nav a:hover{
-    color:#4da3ff;
-}
+nav a:hover{color:#4da3ff;}
 
-/* Sections */
 section{
     min-height:100vh;
     padding:120px 8%;
     display:flex;
     flex-direction:column;
     justify-content:center;
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s;
-}
-
-section.show{
-    opacity:1;
-    transform:translateY(0);
 }
 
 /* Hero */
@@ -82,9 +67,7 @@ section.show{
     color:white;
 }
 
-.hero span{
-    color:#4da3ff;
-}
+.hero span{color:#4da3ff;}
 
 .hero p{
     margin-top:20px;
@@ -93,35 +76,17 @@ section.show{
     max-width:650px;
 }
 
-.location{
-    margin-top:10px;
-    color:#6c7a90;
-}
-
 .btn{
-    margin-top:35px;
+    margin-top:30px;
     padding:14px 32px;
     background:#4da3ff;
     color:white;
     border:none;
     border-radius:6px;
-    font-size:16px;
     cursor:pointer;
-    transition:.3s;
 }
 
-.btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 30px rgba(77,163,255,0.3);
-}
-
-/* Titles */
-h2{
-    font-size:34px;
-    color:white;
-}
-
-/* Grid cards */
+/* Cards */
 .grid{
     margin-top:40px;
     display:grid;
@@ -131,31 +96,73 @@ h2{
 
 .card{
     background:#11182b;
+    padding:25px;
+    border-radius:10px;
     border:1px solid rgba(255,255,255,0.05);
-    padding:28px;
-    border-radius:12px;
-    transition:.3s;
 }
 
 .card:hover{
-    transform:translateY(-8px);
     border-color:#4da3ff;
-    box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    transform:translateY(-5px);
 }
 
-/* Contact */
-.contact p{
-    margin-top:10px;
-    font-size:18px;
-    color:#b0b8c5;
-}
-
-/* Footer */
 footer{
     text-align:center;
     padding:25px;
     background:#050814;
     color:#6c7a90;
+}
+
+/* ===== AI Chat ===== */
+#chat-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    background:#4da3ff;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+#chat-box{
+    position:fixed;
+    bottom:90px;
+    right:20px;
+    width:320px;
+    background:#11182b;
+    border-radius:10px;
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+#chat-header{
+    background:#4da3ff;
+    padding:10px;
+    font-weight:bold;
+}
+
+#chat-messages{
+    height:260px;
+    padding:10px;
+    overflow-y:auto;
+    font-size:14px;
+}
+
+#chat-input{
+    border:none;
+    padding:10px;
+    outline:none;
+    background:#0a0f1c;
+    color:white;
 }
 </style>
 </head>
@@ -167,106 +174,99 @@ footer{
     <div>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
-        <a href="#certificates">Certificates</a>
         <a href="#contact">Contact</a>
     </div>
 </nav>
 
-<!-- Hero -->
-<section class="hero" id="home">
+<section class="hero">
     <h1>Zaid <span>Hardan</span></h1>
     <p>
         Software Engineering student passionate about logical thinking, problem solving,
         and building real-world software solutions.
     </p>
-    <div class="location">Zarqa University – Jordan</div>
-    <a href="#contact"><button class="btn">Contact Me</button></a>
 </section>
 
-<!-- About -->
 <section id="about">
-    <h2>About Me</h2>
+<h2>About Me</h2>
+<p style="margin-top:20px; max-width:800px; line-height:1.8; color:#b0b8c5;">
+I am a Software Engineering student at Zarqa University with a strong passion for programming and logical thinking.
+I enjoy analyzing problems, building structured solutions, and continuously improving my technical skills.
 
-    <p style="margin-top:20px; max-width:850px; color:#b0b8c5; font-size:18px; line-height:1.8;">
-        I am a Software Engineering student at Zarqa University with a strong passion for programming and logical thinking.
-        I enjoy analyzing problems, designing structured solutions, and building systems based on clear logic.
-        Programming is not just my field of study — it is a passion and a mindset that drives me to continuously learn and improve.
-    </p>
+I have completed a training course at Al Hussein Technical University (HTU) and participated in dialogue programs
+that strengthened my communication and teamwork skills. I also hold several additional certificates and actively
+participate in volunteer work.
 
-    <p style="margin-top:20px; max-width:850px; color:#b0b8c5; font-size:18px; line-height:1.8;">
-        I have completed a training course at Al Hussein Technical University (HTU), and I have also participated in dialogue and communication programs
-        that strengthened my communication, critical thinking, and teamwork skills. In addition, I hold several other certificates that reflect my commitment
-        to personal and professional development.
-    </p>
-
-    <p style="margin-top:20px; max-width:850px; color:#b0b8c5; font-size:18px; line-height:1.8;">
-        Alongside my academic journey, I actively participate in volunteer work and community activities.
-        I believe strongly in teamwork, collaboration, and creating a positive impact through both technical and social contributions.
-        My goal is to become a professional software engineer with strong technical skills, discipline, and a continuous growth mindset.
-    </p>
+I am highly passionate about teamwork, continuous learning, and building a professional career in the IT field.
+</p>
 </section>
 
-<!-- Skills -->
 <section id="skills">
-    <h2>Technical Skills</h2>
-    <div class="grid">
-        <div class="card">Java Programming & OOP</div>
-        <div class="card">Android Development</div>
-        <div class="card">HTML & CSS</div>
-        <div class="card">Git & GitHub</div>
-        <div class="card">Cybersecurity Basics</div>
-        <div class="card">Problem Solving & Logical Thinking</div>
-    </div>
+<h2>Technical Skills</h2>
+<div class="grid">
+<div class="card">Java & OOP</div>
+<div class="card">Android Development</div>
+<div class="card">HTML & CSS</div>
+<div class="card">Git & GitHub</div>
+<div class="card">Cybersecurity Basics</div>
+<div class="card">Problem Solving & Logical Thinking</div>
+</div>
 </section>
 
-<!-- Certificates -->
-<section id="certificates">
-    <h2>Certificates & Activities</h2>
-    <div class="grid">
-        <div class="card">
-            Training Program – Al Hussein Technical University (HTU)
-        </div>
-        <div class="card">
-            Dialogue & Communication Program
-        </div>
-        <div class="card">
-            Multiple Professional & Development Certificates
-        </div>
-        <div class="card">
-            Volunteer Work & Community Activities
-        </div>
-        <div class="card">
-            Teamwork & Leadership Experience
-        </div>
-    </div>
-</section>
-
-<!-- Contact -->
-<section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p>Email: zad.hardan1@outlook.com</p>
-    <p>LinkedIn: Zaid Hardan</p>
-    <p>Location: Zarqa, Jordan</p>
+<section id="contact">
+<h2>Contact</h2>
+<p style="margin-top:20px;">Email: zad.hardan1@outlook.com</p>
+<p>LinkedIn: Zaid Hardan</p>
+<p>Location: Zarqa, Jordan</p>
 </section>
 
 <footer>
-    © 2026 Zaid Hardan | Software Engineering Portfolio
+© 2026 Zaid Hardan | Software Engineering Portfolio
 </footer>
 
+<!-- ===== AI CHAT ===== -->
+<div id="chat-btn">AI</div>
+
+<div id="chat-box">
+<div id="chat-header">Zaid AI Assistant</div>
+<div id="chat-messages"></div>
+<input type="text" id="chat-input" placeholder="Ask about Zaid...">
+</div>
+
 <script>
-const sections = document.querySelectorAll("section");
+const btn = document.getElementById("chat-btn");
+const box = document.getElementById("chat-box");
+const input = document.getElementById("chat-input");
+const messages = document.getElementById("chat-messages");
 
-window.addEventListener("scroll", () => {
-    const trigger = window.innerHeight * 0.85;
-    sections.forEach(sec => {
-        const top = sec.getBoundingClientRect().top;
-        if(top < trigger){
-            sec.classList.add("show");
-        }
-    });
+btn.onclick = () => {
+    box.style.display = box.style.display === "flex" ? "none" : "flex";
+    box.style.flexDirection = "column";
+};
+
+input.addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        let text = input.value.toLowerCase();
+        messages.innerHTML += "<div><b>You:</b> "+text+"</div>";
+
+        let reply = "I can tell you about Zaid. Ask about skills, university, or contact.";
+
+        if(text.includes("who") || text.includes("about"))
+            reply = "Zaid Hardan is a Software Engineering student at Zarqa University passionate about programming and logical thinking.";
+
+        else if(text.includes("skills"))
+            reply = "His skills include Java, OOP, Android, HTML, CSS, Git, and Cybersecurity basics.";
+
+        else if(text.includes("contact") || text.includes("email"))
+            reply = "You can contact him at: zad.hardan1@outlook.com";
+
+        else if(text.includes("university"))
+            reply = "He studies at Zarqa University and completed training at HTU.";
+
+        messages.innerHTML += "<div><b>AI:</b> "+reply+"</div>";
+        input.value="";
+        messages.scrollTop = messages.scrollHeight;
+    }
 });
-
-document.querySelector(".hero").classList.add("show");
 </script>
 
 </body>
